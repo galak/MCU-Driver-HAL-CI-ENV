@@ -25,6 +25,10 @@ jobs:
       uses: docker/setup-buildx-action@v1
     - name: Build Docker image ${{env.DOCKER_REPO}}:${{env.TAG_NAME}}
       run: docker buildx build ${{env.DOCKER_REPO}}/${{env.TAG_NAME}}/ --tag ${{env.DOCKER_REPO}}:${{env.TAG_NAME}}
+    - name: debug
+      run: docker buildx ls
+    - name: debug
+      run: docker buildx inspect --bootstrap
     - name: Show tools installed
       run: docker run --rm ${{env.DOCKER_REPO}}:${{env.TAG_NAME}} cat env_settings
     - name: Test docker image
